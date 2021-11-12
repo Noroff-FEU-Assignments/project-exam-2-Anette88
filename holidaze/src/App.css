@@ -1,0 +1,50 @@
+* {
+	box-sizing: border-box;
+}
+
+nav {
+	padding: 15px;
+	background: #ccc;
+}
+
+nav a {
+	color: darkred;
+	text-decoration: none;
+	margin-right: 10px;
+}
+
+form {
+	margin: 1rem auto;
+	padding: 1rem;
+	background: #ebebeb;
+	border-radius: 6px;
+	max-width: 500px;
+}
+
+input,
+textarea {
+	font-size: 1rem;
+	margin-top: 10px;
+	width: 100%;
+	padding: 5px;
+}
+
+textarea {
+	height: 200px;
+}
+
+button {
+	font-size: 1rem;
+	margin-top: 10px;
+}
+
+.container {
+	max-width: 1100x;
+	margin: 1rem auto;
+}
+
+.form-error {
+	background: #fbb;
+	color: darkred;
+	padding: 0.5rem 1rem;
+}
