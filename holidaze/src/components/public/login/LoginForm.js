@@ -4,9 +4,9 @@ import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import axios from "axios";
-import FormError from "../common/FormError";
-import { BASE_URL, TOKEN_PATH } from "../../constants/api";
-import AuthContext from "../../context/AuthContext";
+import FormError from "../../common/FormError";
+import { BASE_URL, TOKEN_PATH } from "../../../constants/api";
+import AuthContext from "../../../context/AuthContext";
 
 const url = BASE_URL + TOKEN_PATH;
 

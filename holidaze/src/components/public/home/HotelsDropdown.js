@@ -2,7 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import { BASE_URL } from "../../../constants/api";
+import { BASE_URL } from "../../constants/api";
 
 export default function HotelsDropdown({ register }) {
 	const [posts, setPosts] = useState([]);
