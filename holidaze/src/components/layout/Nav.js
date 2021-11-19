@@ -15,6 +15,7 @@ function Nav() {
 	return (
 		<nav>
 			<Link to="/">Home</Link>
+			<Link to="/contactus">Contact Holidaze</Link>
 			{auth ? (
 				<>
 					| <Link to="/dashboard">Dashboard</Link> | <button onClick={logout}>Log out</button>

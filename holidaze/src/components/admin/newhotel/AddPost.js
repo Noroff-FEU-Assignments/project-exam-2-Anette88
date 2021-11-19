@@ -7,7 +7,7 @@ import FormError from "../../common/FormError";
 import useAxios from "../../../hooks/useAxios";
 import Heading from "../../layout/Heading";
 import MediaDropdown from "./MediaDropdown";
-import Dashboard from "../Dashboard";
+import DashboardPage from "../dashboard/DashboardPage";
 
 const schema = yup.object().shape({
 	title: yup.string().required("Title is required"),
