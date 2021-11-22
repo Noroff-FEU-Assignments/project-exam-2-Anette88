@@ -21,12 +21,16 @@ function ContactUs() {
 
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
-            <input {...register("name")} />
+            <p>Name</p>
+            <input {...register("name")} /> 
             {errors.name && <span>{errors.name.message}</span>}
+            
 
+            <p>Email</p>
             <input {...register("email")} />
             {errors.email && <span>{errors.email.message}</span>}
 
+            <p>Message</p>
             <textarea {...register("message")} />
             {errors.message && <span>{errors.message.message}</span>}
 

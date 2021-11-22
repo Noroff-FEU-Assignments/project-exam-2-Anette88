@@ -18,7 +18,9 @@ function Nav() {
 			<Link to="/contactus">Contact Holidaze</Link>
 			{auth ? (
 				<>
-					| <Link to="/dashboard">Dashboard</Link> | <button onClick={logout}>Log out</button>
+					| <Link to="/dashboard">Dashboard</Link> 
+					 <Link to="/inbox">Inbox</Link> 
+					 <button onClick={logout}>Log out</button>
 				</>
 			) : (
 				<Link to="/login">Login</Link>

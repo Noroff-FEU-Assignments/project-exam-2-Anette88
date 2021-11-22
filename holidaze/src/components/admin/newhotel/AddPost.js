@@ -33,7 +33,7 @@ export default function AddPost() {
 		console.log(data);
 
 		try {
-			const response = await http.post("/wp/v2/posts", data);
+			const response = await http.post("wp/v2/posts?categories=2", data);
 			console.log("response", response.data);
 			history.push("/dashboard/posts");
 		} catch (error) {

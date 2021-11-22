@@ -9,6 +9,7 @@ import DashboardPage from "./components/admin/dashboard/DashboardPage";
 import PostPage from "./components/admin/newhotel/PostPage";
 import AddPost from "./components/admin/newhotel/AddPost";
 import ContactUs from "./components/public/posts/ContactUs";
+import InboxAdmin from "./components/admin/dashboard/InboxAdmin";
 
 function App() {
 	return (
@@ -35,6 +36,9 @@ function App() {
 						</Route>
 						<Route path="/contactus">
 							<ContactUs />
+						</Route>
+						<Route path="/inbox">
+							<InboxAdmin />
 						</Route>
 					</Switch>
 				</div>
