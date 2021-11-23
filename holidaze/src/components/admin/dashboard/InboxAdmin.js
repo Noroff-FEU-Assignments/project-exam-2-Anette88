@@ -29,11 +29,11 @@ export default function InboxAdmin({ register }) {
 	return (
 		<>
 		<select name="featured_media" ref={register}>
-			<option value="">Hotels</option>
+			<option value="">Inbox</option>
 			{posts.map((posts) => {
 				return (
 					<option key={posts.id} value={posts.id}>
-						{posts.title.rendered}
+						{posts.name.rendered}
 					</option>
 				);
 			})}
