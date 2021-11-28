@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import { BASE_URL } from "../../../constants/api";
 
-export default function HotelsDropdown({ register }) {
+export default function Enquiries({ register }) {
 	const [posts, setPosts] = useState([]);
 
 	
-	const postsURL = "wp/v2/posts?categories=2";
+	const postsURL = "wp/v2/posts?categories=9";
 	const url = BASE_URL + postsURL;
 
 	useEffect(function () {
@@ -28,20 +28,10 @@ export default function HotelsDropdown({ register }) {
 
 	return (
 		<>
-		<select name="featured_media" {...register}>
-			<option value="">Hotels</option>
-			{posts.map((post) => {
-				return (
-					<option key={post.id} value={post.id}>
-						{post.title.rendered}
-					</option>
-				);
-			})}
-		</select>
 		<div className="container">
-		{posts.map(function (post) {
-		  return <div key={post.id}><h2>{post.title.rendered}</h2>
-		  {post.content.rendered}
+		{posts.map(function (posts) {
+		  return <div key={posts.id}><h2>{posts.title.rendered}</h2>
+		  {posts.content.rendered}
 		  </div>;
 		})}
 	  </div>
@@ -50,10 +40,10 @@ export default function HotelsDropdown({ register }) {
 	);
 }
 
-HotelsDropdown.propTypes = {
+InboxAdmin.propTypes = {
 	register: PropTypes.func,
 };
 
-HotelsDropdown.defaultProps = {
+InboxAdmin.defaultProps = {
 	register: () => {},
 };

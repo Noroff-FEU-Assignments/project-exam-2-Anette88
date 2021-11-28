@@ -5,6 +5,7 @@ import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import useAxios from "../../../hooks/useAxios";
 import Heading from "../../layout/Heading";
+import FormError from "../../common/FormError";
 
 
 const schema = yup.object().shape({
@@ -48,8 +49,10 @@ function ContactUs() {
         <>
         <Heading content="Write us a message" />
         <form onSubmit={handleSubmit(onSubmit)}>
+				{serverError && <FormError>{serverError}</FormError>}
+            <fieldset disabled={submitting}>
             <p>Name</p>
-            <input {...register("title")} /> 
+            <input {...register("name")} /> 
             {errors.name && <span>{errors.name.message}</span>}
             
             <p>Email</p>
@@ -57,13 +60,15 @@ function ContactUs() {
             {errors.email && <span>{errors.email.message}</span>}
 
             <p>Message</p>
-            <textarea {...register("content")} />
+            <textarea {...register("message")} />
             {errors.message && <span>{errors.message.message}</span>}
-
-            <button type="submit">Send</button>
+            <button>{submitting ? "Submitting..." : "Submit"}</button>
+            </fieldset>
         </form>
+        
         </>
     );
 }
 
 export default ContactUs;
+

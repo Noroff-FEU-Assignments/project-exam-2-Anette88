@@ -28,16 +28,6 @@ export default function InboxAdmin({ register }) {
 
 	return (
 		<>
-		<select name="featured_media" ref={register}>
-			<option value="">Inbox</option>
-			{posts.map((posts) => {
-				return (
-					<option key={posts.id} value={posts.id}>
-						{posts.name.rendered}
-					</option>
-				);
-			})}
-		</select>
 		<div className="container">
 		{posts.map(function (posts) {
 		  return <div key={posts.id}><h2>{posts.title.rendered}</h2>

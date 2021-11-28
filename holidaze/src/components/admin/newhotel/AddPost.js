@@ -11,6 +11,7 @@ import DashboardPage from "../dashboard/DashboardPage";
 
 const schema = yup.object().shape({
 	title: yup.string().required("Title is required"),
+	content: yup.string().required("Content is required"),
 });
 
 export default function AddPost() {
@@ -20,9 +21,11 @@ export default function AddPost() {
 	const history = useHistory();
 	const http = useAxios();
 
-	const { register, handleSubmit, errors } = useForm({
-		resolver: yupResolver(schema),
-	});
+	const { 
+		register,
+		handleSubmit,
+		formState: { errors },
+	 } = useForm({ resolver: yupResolver(schema) });
 
 	async function onSubmit(data) {
 		setSubmitting(true);
@@ -51,12 +54,13 @@ export default function AddPost() {
 				{serverError && <FormError>{serverError}</FormError>}
 				<fieldset disabled={submitting}>
 					<div>
-						<input name="title" placeholder="Title" ref={register} />
+						<input name="title" placeholder="Title" {...register ("title")} />
 						{errors.title && <FormError>{errors.title.message}</FormError>}
 					</div>
 
 					<div>
-						<textarea name="content" placeholder="Content" ref={register} />
+						<textarea name="content" placeholder="Content" {...register ("content")} />
+						{errors.content && <FormError>{errors.content.message}</FormError>}
 					</div>
 
 					<div>
