@@ -10,6 +10,8 @@ import PostPage from "./components/admin/newhotel/PostPage";
 import AddPost from "./components/admin/newhotel/AddPost";
 import ContactUs from "./components/public/posts/ContactUs";
 import InboxAdmin from "./components/admin/dashboard/InboxAdmin";
+import Booking from "./components/public/posts/Booking";
+import Enquiries from "./components/admin/requests/Enquiries.js";
 
 function App() {
 	return (
@@ -39,6 +41,12 @@ function App() {
 						</Route>
 						<Route path="/inbox">
 							<InboxAdmin />
+						</Route>
+						<Route path="/booking">
+							<Booking />
+						</Route>
+						<Route path ="/requests">
+							<Enquiries />
 						</Route>
 					</Switch>
 				</div>

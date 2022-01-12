@@ -6,7 +6,7 @@ import HotelsDropdown from "./HotelsDropdown";
 export default function HomePage() {
 	return (
 		<>
-			<Heading content="Home" />
+			<Heading content="HOLIDAZE" />
 			<HotelsDropdown />
 		</>
 	);

@@ -54,15 +54,6 @@ export default function HotelsDropdown({ register }) {
 				);
 			})}
 		</select>
-		<div className="container">
-		{posts.map(function (post) {
-		  return <div key={post.id}><h2>{post.title.rendered}</h2>
-		  {post.content.rendered}
-		  <img src="https://projectexam2.cutedevelop.no/wp-content/uploads/2021/10/photo_20190727182552_6554012_0-scaled.jpg"/>
-		  </div>;
-		})}
-	  </div>
-	  
 	  </>
 	);
 }

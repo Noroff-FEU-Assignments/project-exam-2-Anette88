@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import { BASE_URL } from "../../../constants/api";
 
-export default function InboxAdmin({ register }) {
+export default function Enquiries({ register }) {
 	const [posts, setPosts] = useState([]);
 
 	
@@ -31,10 +31,9 @@ export default function InboxAdmin({ register }) {
 		<div className="container">
 		{posts.map(function (posts) {
 		  return <div key={posts.id}><h2>{posts.title.rendered}</h2>
-		  {posts.acf.email}
 		  {posts.content.rendered}
-		  
 		  </div>;
+      
 		})}
 	  </div>
 	  
@@ -42,10 +41,10 @@ export default function InboxAdmin({ register }) {
 	);
 }
 
-InboxAdmin.propTypes = {
+Enquiries.propTypes = {
 	register: PropTypes.func,
 };
 
-InboxAdmin.defaultProps = {
+Enquiries.defaultProps = {
 	register: () => {},
 };

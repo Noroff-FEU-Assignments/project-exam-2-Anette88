@@ -9,7 +9,6 @@ export default function PostPage() {
 			<p>
 				<Link to="/dashboard/newhotel/add">Add new hotel here</Link>
 			</p>
-			<p>List posts here</p>
 		</DashboardPage>
 	);
 }

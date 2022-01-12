@@ -4,34 +4,37 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import { BASE_URL } from "../../../constants/api";
 
-export default function Enquiries({ register }) {
-	const [posts, setPosts] = useState([]);
+export default function HotelImage({ register }) {
+	const [media, setMedia] = useState([]);
 
 	
-	const postsURL = "wp/v2/posts?categories=9";
-	const url = BASE_URL + postsURL;
+	
+	const imagesURL = "wp/v2/media/";
+	
+	const iurl = BASE_URL + imagesURL;
 
 	useEffect(function () {
-		async function getPosts() {
+		async function getMedia() {
 			try {
-				const response = await axios.get(url);
+				const response = await axios.get(iurl);
 				console.log("response", response);
-				setPosts(response.data);
+				setMedia(response.data);
 			} catch (error) {
 				console.log(error);
 			}
 		}
 
-		getPosts();
+		getMedia();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
-		<>
+        <>
+		
 		<div className="container">
-		{posts.map(function (posts) {
-		  return <div key={posts.id}><h2>{posts.title.rendered}</h2>
-		  {posts.content.rendered}
+		{media.map(function (medias) {
+		  return <div key={medias.id}><h2>{medias.title.rendered}</h2>
+		  <img src={medias.source_url}/>
 		  </div>;
 		})}
 	  </div>
@@ -40,10 +43,11 @@ export default function Enquiries({ register }) {
 	);
 }
 
-InboxAdmin.propTypes = {
+
+HotelImage.propTypes = {
 	register: PropTypes.func,
 };
 
-InboxAdmin.defaultProps = {
+HotelImage.defaultProps = {
 	register: () => {},
 };

@@ -16,10 +16,12 @@ function Nav() {
 		<nav>
 			<Link to="/">Home</Link>
 			<Link to="/contactus">Contact Holidaze</Link>
+			<Link to="/booking">Book Hotel</Link>
 			{auth ? (
 				<>
 					| <Link to="/dashboard">Dashboard</Link> 
 					 <Link to="/inbox">Inbox</Link> 
+					 <Link to="/enquiries">Requests</Link> 
 					 <button onClick={logout}>Log out</button>
 				</>
 			) : (

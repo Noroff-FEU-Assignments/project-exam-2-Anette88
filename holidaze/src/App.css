@@ -4,11 +4,11 @@
 
 nav {
 	padding: 15px;
-	background: #ccc;
+	background: #9e6f6f;
 }
 
 nav a {
-	color: darkred;
+	color: #cfcfcf;
 	text-decoration: none;
 	margin-right: 10px;
 }
@@ -16,9 +16,13 @@ nav a {
 form {
 	margin: 1rem auto;
 	padding: 1rem;
-	background: #ebebeb;
+	background: #cfcfcf;
 	border-radius: 6px;
 	max-width: 500px;
+}
+h1 {
+	font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	color: #525252;
 }
 
 input,
@@ -47,4 +51,8 @@ button {
 	background: #fbb;
 	color: darkred;
 	padding: 0.5rem 1rem;
+}
+
+img {
+	width: 25%;
 }

@@ -33,7 +33,11 @@ export default function AddPost() {
 
 		data.status = "publish";
 
-		console.log(data);
+		if (data.featured_media === "") {
+			data.featured_media = null;
+		}
+
+		console.log("add post", data);
 
 		try {
 			const response = await http.post("wp/v2/posts?categories=2", data);
