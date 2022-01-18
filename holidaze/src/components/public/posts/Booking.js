@@ -1,43 +1,59 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
-import useAxios from "../../../hooks/useAxios";
+import useAxios from "../../../hooks/useAxios"
 import Heading from "../../layout/Heading";
 import FormError from "../../common/FormError";
-import HotelOnlyDropdown from "../home/HotelOnlyDropdown";
+import AuthContext from "../../../context/AuthContext";
+import { useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
+import HotelsOnlyDropdown from "../home/HotelsOnlyDropdown";
+import TableDatePicker from "./Datepicker";
 
 
 const schema = yup.object().shape({
     title: yup.string().required("Please enter your name"),
     email: yup.string().required("Please enter an email address").email("Please enter a valid email address"),
-    message: yup.string().required("Please enter your message").min(10, "The message must be at least 10 characters"),
+    content: yup.string().required("Please enter your message").min(10, "The message must be at least 10 characters"),
 });
 
-function Booking() {
+
+export default function Booking(){
+    const [auth, setAuth] = useContext(AuthContext);
     const [submitting, setSubmitting] = useState(false);
 	const [serverError, setServerError] = useState(null);
 
 	const history = useHistory();
 	const http = useAxios();
+    
+    let email = [];
 
-    const { register, handleSubmit, formState: { errors } } = useForm({
-        resolver: yupResolver(schema),
-    });
+    const { register, 
+            handleSubmit, 
+            formState: { errors } 
+        } = useForm({ resolver: yupResolver(schema) });
 
     async function onSubmit(data) {
         setSubmitting(true);
 		setServerError(null);
 
 		data.status = "publish";
+        
 
-        console.log(data);
+        console.log("this data", data);
+
+
+        
 
     try {
-        const response = await http.post("/wp/v2/posts?categories=9", data);
-        console.log("response", response.data);
-        history.push("/dashboard/posts");
+        const response = await http.post("/wp/v2/posts?categories=10" , data);
+        console.log("response", response.data);   
+         
+        history.push("/contactUsSent");
+        email = data.acf.email;
+      //  if (data['email'])
+      //      await http.post("/wp/v2/posts?categories=9" , data.acf.email)
     } catch (error) {
         console.log("error", error);
         setServerError(error.toString());
@@ -48,44 +64,40 @@ function Booking() {
 
     return (
         <>
-        <Heading content="Book hotel" />
+        <Heading content="Write us a message" />
+        
         <form onSubmit={handleSubmit(onSubmit)}>
 				{serverError && <FormError>{serverError}</FormError>}
             <fieldset disabled={submitting}>
-
-            <p>Please fill out the form below. We will contact you to confirm the available dates</p>
-
-            <div>
-                <p>Which hotel do you want to stay at?</p>
-				<HotelOnlyDropdown register={register} />
-			</div>
-
-            <div>
-                <p>Choose your preferred dates</p>
-				<HotelOnlyDropdown register={register} />
-			</div>
-
-
-            <p>Name</p>
-            <input {...register("name")} /> 
-            {errors.name && <span>{errors.name.message}</span>}
-            
-            <p>Email</p>
-            <input {...register("email")} />
-            {errors.email && <span>{errors.email.message}</span>}
-
-            <p>Message</p>
-            <textarea {...register("message")} />
-            {errors.message && <span>{errors.message.message}</span>}
-  
-            <button>{submitting ? "Submitting..." : "Submit"}</button>
+                <div>
+                    <p>Which Hotel do you want to stay at?</p>
+                <HotelsOnlyDropdown />
+                
+                </div>
+                <div>
+                <TableDatePicker />
+                </div>
+                
+                <div>
+                    <p>Name</p>
+                    <input {...register("title")} /> 
+                    {errors.title && <span>{errors.title.message}</span>}
+                </div>
+                <div>
+                    <p>Email</p>
+                    <input {...register("email")} />
+                    {errors.email && <span>{errors.email.message}</span>}
+                </div>
+                <div>
+                    <p>If you have any special requirements, please add them below. If any of them can not be met we will contact you shortly.</p>
+                    <textarea {...register("content")} />
+                    {errors.content && <span>{errors.content.message}</span>}
+                </div>
+                
+                <button>{submitting ? "Submitting..." : "Book Hotel"}</button>
             </fieldset>
-
-           
         </form>
         
         </>
     );
 }
-
-export default Booking;

@@ -8,7 +8,7 @@ export default function Enquiries({ register }) {
 	const [posts, setPosts] = useState([]);
 
 	
-	const postsURL = "wp/v2/posts?categories=9";
+	const postsURL = "wp/v2/posts?categories=10";
 	const url = BASE_URL + postsURL;
 
 	useEffect(function () {
@@ -30,10 +30,15 @@ export default function Enquiries({ register }) {
 		<>
 		<div className="container">
 		{posts.map(function (posts) {
-		  return <div key={posts.id}><h2>{posts.title.rendered}</h2>
-		  {posts.content.rendered}
+		  return <div key={posts.id}>
+			
+		  <p>Date of arrival: {posts.acf.dateStart}</p>
+		  <p>Date of departure: {posts.acf.dateEnd}</p>
+		  <p>Name: {posts.title.rendered}</p>
+		  <p>Email address: {posts.acf.email}</p>
+		  <p>Message: {posts.content.rendered}</p>
+		 
 		  </div>;
-      
 		})}
 	  </div>
 	  

@@ -53,6 +53,22 @@ button {
 	padding: 0.5rem 1rem;
 }
 
+.hoteldiv {
+	width: 40%;
+	float: left;
+	border: 1px solid grey;
+	margin: 1%;
+	padding: 1%;
+}
+
+
+
 img {
-	width: 25%;
+	width: 85%;
+	
+}
+
+p {
+	text-decoration: none;
+	display: block;
 }

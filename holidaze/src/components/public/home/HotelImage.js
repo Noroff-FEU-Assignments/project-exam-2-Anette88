@@ -3,22 +3,25 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { BASE_URL } from "../../../constants/api";
+import { Link } from "react-router-dom";
 
-export default function HotelImage({ register }) {
-	const [media, setMedia] = useState([]);
 
+export default function HotelImage({ photos }) {
+	const [images, setImages] = useState([]);
 	
-	
-	const imagesURL = "wp/v2/media/";
-	
-	const iurl = BASE_URL + imagesURL;
+	const postsURL = "wp/v2/posts?categories=2";
+	const url = BASE_URL + postsURL;
+	let data = [];
+	let info = [];
+	let imageUrl = [];
 
 	useEffect(function () {
 		async function getMedia() {
 			try {
-				const response = await axios.get(iurl);
-				console.log("response", response);
-				setMedia(response.data);
+				const response = await axios.get(BASE_URL + "wp/v2/media/");
+				console.log("iresponse", response);
+				setImages(response.data);
+				data = response.data;	
 			} catch (error) {
 				console.log(error);
 			}
@@ -29,25 +32,15 @@ export default function HotelImage({ register }) {
 	}, []);
 
 	return (
-        <>
-		
+		<>
 		<div className="container">
-		{media.map(function (medias) {
-		  return <div key={medias.id}><h2>{medias.title.rendered}</h2>
-		  <img src={medias.source_url}/>
+		{images.map(function (image) {
+		  return <div className="image">		
+				  <img alt="hotel image" src={image.source_url}/>
 		  </div>;
 		})}
-	  </div>
-	  
-	  </>
+		
+		</div>
+		</>
 	);
 }
-
-
-HotelImage.propTypes = {
-	register: PropTypes.func,
-};
-
-HotelImage.defaultProps = {
-	register: () => {},
-};

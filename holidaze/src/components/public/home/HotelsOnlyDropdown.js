@@ -3,16 +3,14 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { BASE_URL } from "../../../constants/api";
-import HotelImage from "./HotelImage";
 
-export default function HotelsDropdown({ register }) {
+export default function HotelsOnlyDropdown({ register }) {
 	const [posts, setPosts] = useState([]);
 	
 	const postsURL = "wp/v2/posts?categories=2";
 	const url = BASE_URL + postsURL;
 	let data = [];
-	let items = [];
-	let imageUrl;
+	
 
 	useEffect(function () {
 		async function getPosts() {
@@ -21,18 +19,6 @@ export default function HotelsDropdown({ register }) {
 				console.log("response", response);
 				setPosts(response.data);
 				data = response.data;	
-
-				for (let i = 0; i < data.length; i++) {
-					let imageUrl = "";
-
-					if (data[i].featured_media) {
-						imageUrl = await axios.get(BASE_URL + "wp/v2/media/" + data[i].featured_media);
-						imageUrl = imageUrl.data.source_url;
-						console.log("images", imageUrl);
-					}
-
-				}
-
 			} catch (error) {
 				console.log(error);
 			}
@@ -54,14 +40,15 @@ export default function HotelsDropdown({ register }) {
 				);
 			})}
 		</select>
+	  
 	  </>
 	);
 }
 
-HotelsDropdown.propTypes = {
+HotelsOnlyDropdown.propTypes = {
 	register: PropTypes.func,
 };
 
-HotelsDropdown.defaultProps = {
+HotelsOnlyDropdown.defaultProps = {
 	register: () => {},
 };

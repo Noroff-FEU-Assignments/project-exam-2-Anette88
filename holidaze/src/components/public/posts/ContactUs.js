@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { useHistory } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import useAxios from "../../../hooks/useAxios"
 import Heading from "../../layout/Heading";
 import FormError from "../../common/FormError";
-
+import AuthContext from "../../../context/AuthContext";
+import { useContext } from "react";
+import { Link, useHistory } from "react-router-dom";
 
 
 const schema = yup.object().shape({
@@ -17,12 +18,12 @@ const schema = yup.object().shape({
 
 
 export default function ContactUs(){
+    const [auth, setAuth] = useContext(AuthContext);
     const [submitting, setSubmitting] = useState(false);
 	const [serverError, setServerError] = useState(null);
 
 	const history = useHistory();
 	const http = useAxios();
-
     
 
     const { register, 
@@ -35,20 +36,20 @@ export default function ContactUs(){
 		setServerError(null);
 
 		data.status = "publish";
+        
 
-        console.log(data);
+        console.log("this data", data);
 
 
-        const emails = {
-            acf: {
-                email: data.email,
-            },
-        };
+        
 
     try {
-        const response = await http.post("/wp/v2/posts?categories=9", data);
-        console.log("response", response.data);    
-        history.push("/");
+        const response = await http.post("/wp/v2/posts?categories=9" , data);
+        console.log("response", response.data);   
+         
+        history.push("/contactUsSent");
+        if (data['email'])
+            await http.post("/wp/v2/posts?categories=9" , data.acf.email)
     } catch (error) {
         console.log("error", error);
         setServerError(error.toString());

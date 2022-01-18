@@ -3,11 +3,13 @@ import Heading from "../../layout/Heading";
 import HotelsDropdown from "./HotelsDropdown";
 
 
-export default function HomePage() {
+
+export default function Hotels() {
 	return (
 		<>
-			<Heading content="HOLIDAZE" />
-			
+			<Heading content="HOTELS" />
+            
+			<HotelsDropdown />
 		</>
 	);
 }

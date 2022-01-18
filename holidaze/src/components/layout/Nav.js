@@ -15,6 +15,7 @@ function Nav() {
 	return (
 		<nav>
 			<Link to="/">Home</Link>
+			<Link to="/hotels">Hotels</Link>
 			<Link to="/contactus">Contact Holidaze</Link>
 			<Link to="/booking">Book Hotel</Link>
 			{auth ? (

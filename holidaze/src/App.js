@@ -12,6 +12,8 @@ import ContactUs from "./components/public/posts/ContactUs";
 import InboxAdmin from "./components/admin/dashboard/InboxAdmin";
 import Booking from "./components/public/posts/Booking";
 import Enquiries from "./components/admin/requests/Enquiries.js";
+import Hotels from "./components/public/home/Hotels";
+import HotelSpecific from "./components/public/home/specific/HotelSpecific";
 
 function App() {
 	return (
@@ -23,6 +25,12 @@ function App() {
 					<Switch>
 						<Route exact path="/">
 							<HomePage />
+						</Route>
+						<Route exact path="/hotels">
+							<Hotels />
+						</Route>
+						<Route exact path="/hotels/specific">
+							<HotelSpecific />
 						</Route>
 						<Route path="/login">
 							<LoginPage />
@@ -45,7 +53,7 @@ function App() {
 						<Route path="/booking">
 							<Booking />
 						</Route>
-						<Route path ="/requests">
+						<Route path ="/enquiries">
 							<Enquiries />
 						</Route>
 					</Switch>
