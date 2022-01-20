@@ -29,14 +29,17 @@ export default function Enquiries({ register }) {
 	return (
 		<>
 		<div className="container">
-		{posts.map(function (posts) {
-		  return <div key={posts.id}>
-			
-		  <p>Date of arrival: {posts.acf.dateStart}</p>
-		  <p>Date of departure: {posts.acf.dateEnd}</p>
-		  <p>Name: {posts.title.rendered}</p>
-		  <p>Email address: {posts.acf.email}</p>
-		  <p>Message: {posts.content.rendered}</p>
+		<h3>Booking requests</h3>
+		{posts.map(function (post) {
+		  return <div className="enquiries" key={post.id}>
+			  <p>Hotel: {post.id}</p>
+		  <p>Date of arrival: {post.acf.dateStart}</p>
+		  <p>Date of departure: {post.acf.dateEnd}</p>
+		  <p>Name: {post.title.rendered}</p>
+		  <p>Email address: {post.acf.email}</p>
+		  <p>Message:</p>
+		  <p className="message" dangerouslySetInnerHTML={{ __html: post.content.rendered }}></p>
+		  
 		 
 		  </div>;
 		})}

@@ -15,7 +15,7 @@ import TableDatePicker from "./Datepicker";
 const schema = yup.object().shape({
     title: yup.string().required("Please enter your name"),
     email: yup.string().required("Please enter an email address").email("Please enter a valid email address"),
-    content: yup.string().required("Please enter your message").min(10, "The message must be at least 10 characters"),
+    content: yup.string().required("Please enter your message"),
 });
 
 
@@ -51,9 +51,7 @@ export default function Booking(){
         console.log("response", response.data);   
          
         history.push("/contactUsSent");
-        email = data.acf.email;
-      //  if (data['email'])
-      //      await http.post("/wp/v2/posts?categories=9" , data.acf.email)
+       
     } catch (error) {
         console.log("error", error);
         setServerError(error.toString());
@@ -64,15 +62,16 @@ export default function Booking(){
 
     return (
         <>
-        <Heading content="Write us a message" />
+        <Heading content="Book your hotel here" />
         
         <form onSubmit={handleSubmit(onSubmit)}>
 				{serverError && <FormError>{serverError}</FormError>}
             <fieldset disabled={submitting}>
                 <div>
                     <p>Which Hotel do you want to stay at?</p>
-                <HotelsOnlyDropdown />
-                
+                    <div>
+						<HotelsOnlyDropdown register={register} />
+					</div>
                 </div>
                 <div>
                 <TableDatePicker />

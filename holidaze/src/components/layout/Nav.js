@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
+import logo from "../../images/logowtext.png";
 
 function Nav() {
 	const [auth, setAuth] = useContext(AuthContext);
@@ -14,15 +15,18 @@ function Nav() {
 
 	return (
 		<nav>
-			<Link to="/">Home</Link>
-			<Link to="/hotels">Hotels</Link>
-			<Link to="/contactus">Contact Holidaze</Link>
-			<Link to="/booking">Book Hotel</Link>
+			
+			
+			
+			<Link className="navbar" to="/"><img className="logo" src= {logo} /></Link>
+			<Link className="navbar" to="/hotels">Hotels</Link>
+			<Link className="navbar" to="/contactus">Contact Holidaze</Link>
+			<Link className="navbar" to="/booking">Book Hotel</Link>
 			{auth ? (
 				<>
-					| <Link to="/dashboard">Dashboard</Link> 
-					 <Link to="/inbox">Inbox</Link> 
-					 <Link to="/enquiries">Requests</Link> 
+					| <Link className="navbar" to="/dashboard">Dashboard</Link> 
+					 <Link className="navbar" to="/inbox">Inbox</Link> 
+					 <Link className="navbar" to="/enquiries">Requests</Link> 
 					 <button onClick={logout}>Log out</button>
 				</>
 			) : (

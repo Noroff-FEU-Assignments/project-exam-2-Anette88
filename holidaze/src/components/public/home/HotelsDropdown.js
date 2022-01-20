@@ -12,6 +12,7 @@ export default function HotelsDropdown({ register }) {
 	const [posts, setPosts] = useState([]);
 	const [media, setMedia] = useState([]);
 	
+	
 	const postsURL = "wp/v2/posts?categories=2";
 	const url = BASE_URL + postsURL;
 	let data = [];
@@ -26,7 +27,8 @@ export default function HotelsDropdown({ register }) {
 				const response = await axios.get(url);
 				console.log("response", response);
 				setPosts(response.data);
-				data = response.data;	
+				data = response.data;
+					
 
 				for (let i = 0; i < data.length; i++) {
 					imageUrl = "";
@@ -36,7 +38,8 @@ export default function HotelsDropdown({ register }) {
 						
 						info = imageUrl.data;
 						image = info.source_url;
-						setMedia(image);
+						setMedia(info);
+						
 						
 
 						console.log("info", info);
@@ -59,26 +62,40 @@ export default function HotelsDropdown({ register }) {
 	}, []);
 
 	return (
+		
 		<>
+		<select name="hotel_name" {...register("hotel_name")}>
+			<option value="">Hotels</option>
+			{posts.map((post) => {
+				return (
+					<option key={post.id} value={post.id}>
+						{post.title.rendered}
+					</option>
+				);
+			})}
+		</select>
 		<div className="container">
 		{posts.map(function (post) {
 		  return <div className="hoteldiv">
 			  <div className="hoteltext">
 				  <h2>{post.title.rendered}</h2>
-		  			<p className="hotelcontent">{post.content.rendered}</p>
-				  <img alt="hotel image" src={ media }/>
-				  
+		  			 
+					  <p className="hotelcontent" dangerouslySetInnerHTML={{ __html: post.content.rendered }}></p>
+					  
+					  <div>  
+				  <img alt="hotel image" src={ media.source_url }/>
+				  </div>
 				</div>
-				<Link id={post.id} to="/hotels/specific">More info</Link>
+				<Link id={post.id} to="hotels/specific">Read more</Link>
 		  </div>;
 		})}
+		
 		</div>
 		</>
 	);
 }
 
 
-	
 
 HotelsDropdown.propTypes = {
 	register: PropTypes.func,

@@ -29,10 +29,14 @@ export default function InboxAdmin({ register }) {
 	return (
 		<>
 		<div className="container">
+		<h3>Messages from customers</h3>
 		{posts.map(function (posts) {
-		  return <div key={posts.id}><h2>{posts.title.rendered}</h2>
-		  {posts.acf.email}
-		  {posts.content.rendered}
+		  return <div className="inbox" key={posts.id}>
+			  
+			  <p>Name: {posts.title.rendered}</p>
+		  <p>Email address: {posts.acf.email}</p>
+			<p>Message:</p>
+		  <p className="message" dangerouslySetInnerHTML={{ __html: posts.content.rendered }}></p>
 		  
 		  </div>;
 		})}

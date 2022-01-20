@@ -14,6 +14,7 @@ import Booking from "./components/public/posts/Booking";
 import Enquiries from "./components/admin/requests/Enquiries.js";
 import Hotels from "./components/public/home/Hotels";
 import HotelSpecific from "./components/public/home/specific/HotelSpecific";
+import ContactUsSent from "./components/public/posts/ContactUsSent";
 
 function App() {
 	return (
@@ -29,9 +30,8 @@ function App() {
 						<Route exact path="/hotels">
 							<Hotels />
 						</Route>
-						<Route exact path="/hotels/specific">
-							<HotelSpecific />
-						</Route>
+						
+						
 						<Route path="/login">
 							<LoginPage />
 						</Route>
@@ -46,6 +46,9 @@ function App() {
 						</Route>
 						<Route path="/contactus">
 							<ContactUs />
+						</Route>
+						<Route path="/contactussent">
+							<ContactUsSent />
 						</Route>
 						<Route path="/inbox">
 							<InboxAdmin />

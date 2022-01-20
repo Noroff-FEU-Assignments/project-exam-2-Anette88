@@ -6,6 +6,7 @@ import { BASE_URL } from "../../../constants/api";
 
 export default function HotelsOnlyDropdown({ register }) {
 	const [posts, setPosts] = useState([]);
+
 	
 	const postsURL = "wp/v2/posts?categories=2";
 	const url = BASE_URL + postsURL;
@@ -13,18 +14,19 @@ export default function HotelsOnlyDropdown({ register }) {
 	
 
 	useEffect(function () {
-		async function getPosts() {
+		async function getInput() {
 			try {
 				const response = await axios.get(url);
 				console.log("response", response);
 				setPosts(response.data);
 				data = response.data;	
+
 			} catch (error) {
 				console.log(error);
 			}
 		}
 
-		getPosts();
+		getInput();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 

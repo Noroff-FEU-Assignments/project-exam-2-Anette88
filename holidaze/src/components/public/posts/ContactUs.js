@@ -47,7 +47,7 @@ export default function ContactUs(){
         const response = await http.post("/wp/v2/posts?categories=9" , data);
         console.log("response", response.data);   
          
-        history.push("/contactUsSent");
+        history.push("/contactussent");
         if (data['email'])
             await http.post("/wp/v2/posts?categories=9" , data.acf.email)
     } catch (error) {
@@ -60,10 +60,12 @@ export default function ContactUs(){
 
     return (
         <>
-        <Heading content="Write us a message" />
+        <Heading content="Contact us" />
+        
         <form onSubmit={handleSubmit(onSubmit)}>
 				{serverError && <FormError>{serverError}</FormError>}
             <fieldset disabled={submitting}>
+            <p>Do you have any questions? Please fill out this form. We will get back to you within 1-2 days.</p>
                 <div>
                     <p>Name</p>
                     <input {...register("title")} /> 
@@ -79,7 +81,7 @@ export default function ContactUs(){
                     <textarea {...register("content")} />
                     {errors.content && <span>{errors.content.message}</span>}
                 </div>
-                <button>{submitting ? "Submitting..." : "Submit"}</button>
+                <button>{submitting ? "Submitting..." : "Send"}</button>
             </fieldset>
         </form>
         
