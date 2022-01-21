@@ -18,7 +18,7 @@ function Nav() {
 			
 			
 			
-			<Link className="navbar" to="/"><img className="logo" src= {logo} /></Link>
+			<Link className="navbar" to="/"><img alt="logo and name for Holidaze" className="logo" src= {logo} /></Link>
 			<Link className="navbar" to="/hotels">Hotels</Link>
 			<Link className="navbar" to="/contactus">Contact Holidaze</Link>
 			<Link className="navbar" to="/booking">Book Hotel</Link>

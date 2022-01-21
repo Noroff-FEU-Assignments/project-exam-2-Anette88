@@ -24,11 +24,11 @@ export default function MediaDropdown({ register }) {
 	}, []);
 
 	return (
-		<select name="featured_media" {...register("featured_media")}>
+		<select name="media_title" {...register("media.title")}>
 			<option value="">Images</option>
 			{media.map((media) => {
 				return (
-					<option key={media.id} value={media.id}>
+					<option key={media.id} value={media.title.rendered}>
 						{media.title.rendered}
 					</option>
 				);

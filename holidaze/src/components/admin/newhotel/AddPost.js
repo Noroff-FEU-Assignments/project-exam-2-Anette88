@@ -33,14 +33,23 @@ export default function AddPost() {
 
 		data.status = "publish";
 
-		if (data.featured_media === "") {
-			data.featured_media = null;
-		}
+		const updatehotel = {
+            title: data.title,
+            content: data.content,
+            status: "publish",
+            acf: {
+                attributes: data.attributes,
+                datestart: "",
+                dateend: "",
+				
+            }
+        };
+		
 
 		console.log("add post", data);
 
 		try {
-			const response = await http.post("wp/v2/posts?categories=2", data);
+			const response = await http.post("wp/v2/posts?categories=2", updatehotel);
 			console.log("response", response.data);
 			history.push("/dashboard/posts");
 		} catch (error) {
@@ -65,6 +74,12 @@ export default function AddPost() {
 					<div>
 						<textarea name="content" placeholder="Content" {...register ("content")} />
 						{errors.content && <FormError>{errors.content.message}</FormError>}
+					</div>
+					<div>
+						<p>Restaurant <input name="restaurant" type="checkbox" value="restaurant" {...register ("attributes")} /></p>
+						<p>Bar <input name="bar" type="checkbox" value="bar" {...register ("attributes")} /></p>
+						<input name="swimmingpool" type="checkbox" value="swimmingpool" {...register ("attributes")} />
+						<input name="oceanview" type="checkbox" value="oceanview" {...register ("attributes")} />
 					</div>
 
 					<div>

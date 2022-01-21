@@ -32,7 +32,7 @@ export default function Enquiries({ register }) {
 		<h3>Booking requests</h3>
 		{posts.map(function (post) {
 		  return <div className="enquiries" key={post.id}>
-			  <p>Hotel: {post.id}</p>
+			  <p>Hotel: {post.acf.hotel}</p>
 		  <p>Date of arrival: {post.acf.dateStart}</p>
 		  <p>Date of departure: {post.acf.dateEnd}</p>
 		  <p>Name: {post.title.rendered}</p>

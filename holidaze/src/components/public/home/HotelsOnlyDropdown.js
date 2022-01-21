@@ -32,11 +32,11 @@ export default function HotelsOnlyDropdown({ register }) {
 
 	return (
 		<>
-		<select {...register}>
+        <select name="hotel" {...register("hotel")}>
 			<option value="">Hotels</option>
 			{posts.map((post) => {
 				return (
-					<option key={post.id} value={post.id}>
+					<option key={post.id} value={post.title.rendered}>
 						{post.title.rendered}
 					</option>
 				);

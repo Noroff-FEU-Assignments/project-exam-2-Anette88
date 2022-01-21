@@ -3,7 +3,6 @@ import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 import { BASE_URL } from "../../../constants/api";
-import HotelImage from "./HotelImage";
 import { Link } from "react-router-dom";
 
 
@@ -64,16 +63,6 @@ export default function HotelsDropdown({ register }) {
 	return (
 		
 		<>
-		<select name="hotel_name" {...register("hotel_name")}>
-			<option value="">Hotels</option>
-			{posts.map((post) => {
-				return (
-					<option key={post.id} value={post.id}>
-						{post.title.rendered}
-					</option>
-				);
-			})}
-		</select>
 		<div className="container">
 		{posts.map(function (post) {
 		  return <div className="hoteldiv">
@@ -81,7 +70,7 @@ export default function HotelsDropdown({ register }) {
 				  <h2>{post.title.rendered}</h2>
 		  			 
 					  <p className="hotelcontent" dangerouslySetInnerHTML={{ __html: post.content.rendered }}></p>
-					  
+					  <p>{post.acf.attributes}</p>
 					  <div>  
 				  <img alt="hotel image" src={ media.source_url }/>
 				  </div>

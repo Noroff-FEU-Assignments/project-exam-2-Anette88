@@ -7,9 +7,9 @@ import Heading from "../../layout/Heading";
 import FormError from "../../common/FormError";
 import AuthContext from "../../../context/AuthContext";
 import { useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import HotelsOnlyDropdown from "../home/HotelsOnlyDropdown";
-import TableDatePicker from "./Datepicker";
+import DatePicker from "./Datepicker";
 
 
 const schema = yup.object().shape({
@@ -40,6 +40,17 @@ export default function Booking(){
 
 		data.status = "publish";
         
+        const request = {
+            title: data.title,
+            content: data.content,
+            status: "publish",
+            acf: {
+                email: data.email,
+                dateStart: data.dateStart,
+                dateEnd: data.dateEnd,
+                hotel: data.hotel,
+            }
+        };
 
         console.log("this data", data);
 
@@ -47,9 +58,11 @@ export default function Booking(){
         
 
     try {
-        const response = await http.post("/wp/v2/posts?categories=10" , data);
+        const response = await http.post("/wp/v2/posts?categories=10" , request);
         console.log("response", response.data);   
-         
+
+        
+
         history.push("/contactUsSent");
        
     } catch (error) {
@@ -74,7 +87,7 @@ export default function Booking(){
 					</div>
                 </div>
                 <div>
-                <TableDatePicker />
+                <DatePicker register={register}/>
                 </div>
                 
                 <div>

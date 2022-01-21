@@ -7,7 +7,7 @@ import Heading from "../../layout/Heading";
 import FormError from "../../common/FormError";
 import AuthContext from "../../../context/AuthContext";
 import { useContext } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 
 const schema = yup.object().shape({
@@ -37,6 +37,16 @@ export default function ContactUs(){
 
 		data.status = "publish";
         
+        const message = {
+            title: data.title,
+            content: data.content,
+            status: "publish",
+            acf: {
+                email: data.email,
+                datestart: "",
+                dateend: "",
+            }
+        };
 
         console.log("this data", data);
 
@@ -44,12 +54,9 @@ export default function ContactUs(){
         
 
     try {
-        const response = await http.post("/wp/v2/posts?categories=9" , data);
-        console.log("response", response.data);   
-         
-        history.push("/contactussent");
-        if (data['email'])
-            await http.post("/wp/v2/posts?categories=9" , data.acf.email)
+        const response = await http.post("/wp/v2/posts?categories=9" , message);
+            console.log("response", response.data);   
+            history.push("/contactussent");
     } catch (error) {
         console.log("error", error);
         setServerError(error.toString());
@@ -73,7 +80,7 @@ export default function ContactUs(){
                 </div>
                 <div>
                     <p>Email</p>
-                    <input {...register("email")} />
+                    <input name="email" type="email" id="email" {...register("email")} />
                     {errors.email && <span>{errors.email.message}</span>}
                 </div>
                 <div>
