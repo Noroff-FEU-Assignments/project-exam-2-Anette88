@@ -1,3 +1,9 @@
+Username: admin
+Password: ThreeRandomWords2021
+
+- Contact Form and Booking does not work before logged in as admin.
+
+
 # Project Exam 2
 There are two options with this Project Exam. 
 You need to only choose one and please follow the deliveries carefully.
