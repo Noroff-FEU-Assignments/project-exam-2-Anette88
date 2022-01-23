@@ -37,20 +37,20 @@ export default function AddPost() {
             title: data.title,
             content: data.content,
             status: "publish",
+			featured_media: data.featured_media,
             acf: {
                 attributes: data.attributes,
                 datestart: "",
-                dateend: "",
-				
+                dateend: "",				
             }
         };
 		
 
-		console.log("add post", data);
+		//console.log("add post", data);
 
 		try {
 			const response = await http.post("wp/v2/posts?categories=2", updatehotel);
-			console.log("response", response.data);
+			//console.log("response", response.data);
 			history.push("/dashboard/posts");
 		} catch (error) {
 			console.log("error", error);
@@ -76,10 +76,23 @@ export default function AddPost() {
 						{errors.content && <FormError>{errors.content.message}</FormError>}
 					</div>
 					<div>
-						<p>Restaurant <input name="restaurant" type="checkbox" value="restaurant" {...register ("attributes")} /></p>
-						<p>Bar <input name="bar" type="checkbox" value="bar" {...register ("attributes")} /></p>
-						<input name="swimmingpool" type="checkbox" value="swimmingpool" {...register ("attributes")} />
-						<input name="oceanview" type="checkbox" value="oceanview" {...register ("attributes")} />
+						<form>
+							<label for="restaurant">
+							<input className="inputcheckbox" name="restaurant" type="checkbox" value="restaurant" {...register ("attributes")} />
+							Restaurant</label>
+							
+							<label for="bar">
+							<input className="inputcheckbox" name="bar" type="checkbox" value="bar" {...register ("attributes")} />
+							Bar</label>
+							
+							<label for="Swimming Pool">
+							<input className="inputcheckbox" name="swimmingpool" type="checkbox" value="swimmingpool" {...register ("attributes")} />
+							Swimming Pool</label>
+							
+							<label for="oceanview">
+							<input className="inputcheckbox" name="oceanview" type="checkbox" value="oceanview" {...register ("attributes")} />
+							Ocean View</label>
+						</form>
 					</div>
 
 					<div>

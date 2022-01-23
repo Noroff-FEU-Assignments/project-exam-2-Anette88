@@ -17,7 +17,7 @@ export default function HotelsOnlyDropdown({ register }) {
 		async function getInput() {
 			try {
 				const response = await axios.get(url);
-				console.log("response", response);
+				//console.log("response", response);
 				setPosts(response.data);
 				data = response.data;	
 

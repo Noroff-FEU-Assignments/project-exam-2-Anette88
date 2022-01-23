@@ -10,25 +10,27 @@ export default function MediaDropdown({ register }) {
 
 	useEffect(function () {
 		async function getMedia() {
+
 			try {
 				const response = await http.get("wp/v2/media");
-				console.log("response", response);
+				//console.log("response", response);
 				setMedia(response.data);
 			} catch (error) {
 				console.log(error);
 			}
 		}
 
+
 		getMedia();
 		
 	}, []);
 
 	return (
-		<select name="media_title" {...register("media.title")}>
+		<select name="featured_media" {...register("featured_media")}>
 			<option value="">Images</option>
 			{media.map((media) => {
 				return (
-					<option key={media.id} value={media.title.rendered}>
+					<option key={media.id} value={media.id}>
 						{media.title.rendered}
 					</option>
 				);

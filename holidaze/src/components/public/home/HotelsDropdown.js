@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import { BASE_URL } from "../../../constants/api";
 import { Link } from "react-router-dom";
+import HotelItem from "./HotelItem";
 
 
 
@@ -24,7 +25,7 @@ export default function HotelsDropdown({ register }) {
 		async function getPosts() {
 			try {
 				const response = await axios.get(url);
-				console.log("response", response);
+				//console.log("response", response);
 				setPosts(response.data);
 				data = response.data;
 					
@@ -33,18 +34,19 @@ export default function HotelsDropdown({ register }) {
 					imageUrl = "";
 
 					if (data[i].featured_media) {
+						//console.log(data[i].featured_media);
 						const imageUrl = await axios.get(BASE_URL + "wp/v2/media/" + data[i].featured_media);
 						
 						info = imageUrl.data;
 						image = info.source_url;
-						setMedia(info);
+						setMedia(image);
 						
 						
 
-						console.log("info", info);
-						console.log("image", image);
+						//console.log("info", info);
+						//console.log("image", image);
 						
-						console.log("result image", imageUrl);
+						//console.log("result image", imageUrl);
 					}
 			
 					
@@ -67,18 +69,26 @@ export default function HotelsDropdown({ register }) {
 		{posts.map(function (post) {
 		  return <div className="hoteldiv">
 			  <div className="hoteltext">
-				  <h2>{post.title.rendered}</h2>
-		  			 
-					  <p className="hotelcontent" dangerouslySetInnerHTML={{ __html: post.content.rendered }}></p>
-					  <p>{post.acf.attributes}</p>
-					  <div>  
-				  <img alt="hotel image" src={ media.source_url }/>
-				  </div>
+				  	<h2>{post.title.rendered}</h2> 
+					<p className="hotelcontent" dangerouslySetInnerHTML={{ __html: post.content.rendered }}></p>
+					<div>
+					<div>  
+				  		<img className="hotelimage" alt="hotel image" src={media}/>
+				  	</div>
+						<h3>Attributes</h3>
+						<ul>
+					  		<li key="first">{post.acf.attributes[0]}</li>
+					  		<li key="second">{post.acf.attributes[1]}</li>
+					  		<li key="third">{post.acf.attributes[2]}</li>
+					  		<li key="fourth">{post.acf.attributes[3]}</li>
+					  	</ul>
+					</div>
+					
 				</div>
-				<Link id={post.id} to="hotels/specific">Read more</Link>
-		  </div>;
+				
+				<HotelItem key={post.id} id={post.id} title="Read More" />
+		  	</div>;
 		})}
-		
 		</div>
 		</>
 	);

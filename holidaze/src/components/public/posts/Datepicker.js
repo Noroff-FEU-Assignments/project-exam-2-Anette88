@@ -12,7 +12,7 @@ export default function TableDatePicker( {register} ) {
     <div className="Start date"> 
      <p>Arrival Date</p>  
      
-     <DatePicker {...register("dateStart")}
+     <DatePicker name="startDate" {...register("startDate")}
        selected={startDate}
        selectsStart
        startDate={startDate}
@@ -22,7 +22,7 @@ export default function TableDatePicker( {register} ) {
      </div> 
      <div className="End date">
      <p>Checkout Date</p>
-     <DatePicker {...register("dateEnd")}
+     <DatePicker name="endDate" {...register("endDate")}
        selected={endDate}
        selectsEnd
        startDate={startDate}
@@ -34,3 +34,4 @@ export default function TableDatePicker( {register} ) {
    </div>
  );
 }
+

@@ -46,8 +46,8 @@ export default function Booking(){
             status: "publish",
             acf: {
                 email: data.email,
-                dateStart: data.dateStart,
-                dateEnd: data.dateEnd,
+                startDate: data.startDate,
+                endDate: data.endDate,
                 hotel: data.hotel,
             }
         };
@@ -63,7 +63,7 @@ export default function Booking(){
 
         
 
-        history.push("/contactUsSent");
+        history.push("/bookingsent");
        
     } catch (error) {
         console.log("error", error);

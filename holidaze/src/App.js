@@ -15,6 +15,8 @@ import Enquiries from "./components/admin/requests/Enquiries.js";
 import Hotels from "./components/public/home/Hotels";
 import HotelSpecific from "./components/public/home/specific/HotelSpecific";
 import ContactUsSent from "./components/public/posts/ContactUsSent";
+import BookingSent from "./components/public/posts/BookingSent";
+
 
 function App() {
 	return (
@@ -30,7 +32,9 @@ function App() {
 						<Route exact path="/hotels">
 							<Hotels />
 						</Route>
-						
+						<Route exact path="/hotels/:id">
+							<HotelSpecific />
+						</Route>
 						
 						<Route path="/login">
 							<LoginPage />
@@ -55,6 +59,9 @@ function App() {
 						</Route>
 						<Route path="/booking">
 							<Booking />
+						</Route>
+						<Route path="/bookingsent">
+							<BookingSent />
 						</Route>
 						<Route path ="/enquiries">
 							<Enquiries />

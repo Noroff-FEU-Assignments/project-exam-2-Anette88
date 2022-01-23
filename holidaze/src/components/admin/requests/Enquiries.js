@@ -15,7 +15,7 @@ export default function Enquiries({ register }) {
 		async function getPosts() {
 			try {
 				const response = await axios.get(url);
-				console.log("response", response);
+				//console.log("response", response);
 				setPosts(response.data);
 			} catch (error) {
 				console.log(error);
@@ -32,7 +32,7 @@ export default function Enquiries({ register }) {
 		<h3>Booking requests</h3>
 		{posts.map(function (post) {
 		  return <div className="enquiries" key={post.id}>
-			  <p>Hotel: {post.acf.hotel}</p>
+			<p>Hotel: {post.acf.hotel}</p>
 		  <p>Date of arrival: {post.acf.dateStart}</p>
 		  <p>Date of departure: {post.acf.dateEnd}</p>
 		  <p>Name: {post.title.rendered}</p>

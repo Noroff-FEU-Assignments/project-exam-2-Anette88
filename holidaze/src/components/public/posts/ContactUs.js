@@ -48,14 +48,14 @@ export default function ContactUs(){
             }
         };
 
-        console.log("this data", data);
+        //console.log("this data", data);
 
 
         
 
     try {
         const response = await http.post("/wp/v2/posts?categories=9" , message);
-            console.log("response", response.data);   
+            //console.log("response", response.data);   
             history.push("/contactussent");
     } catch (error) {
         console.log("error", error);
